@@ -1,0 +1,13 @@
+{
+  "companyDetails": {
+    "companyName": "TheKroll Ltd.",
+    "companyAddress": {
+      "street": "26 Anthipolochagou Georgiou M.Savva",
+      "shopNumber": "Shop 1-2",
+      "city": "Paphos",
+      "postalCode": "8201",
+      "country": "Cyprus"
+    },
+    "contactEmail": "info@thekroll.ltd"
+  }
+}

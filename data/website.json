@@ -1,0 +1,35 @@
+{
+  "legalNoticeDetails": {
+    "websiteOwner": {
+      "name": "TheKroll Ltd.",
+      "address": {
+        "street": "26 Anthipolochagou Georgiou M.Savva",
+        "shopNumber": "Shop 1-2",
+        "city": "Paphos",
+        "postalCode": "8201",
+        "country": "Cyprus"
+      },
+      "contactEmail": "info@thekroll.ltd",
+      "vatNumber": "Requested"
+    },
+    "privacyPolicy": {
+      "dataCollection": "Personal data is collected only with your consent or for contract fulfillment/initiation purposes.",
+      "dataUsage": "Collected data is used for providing our services and communication.",
+      "userRights": "Users have the right to access, rectify, delete, and restrict processing of their data.",
+      "cookiePolicy": "Our website uses only technical required cookies."
+    },
+    "termsOfUse": {
+      "copyrightNotice": "All contents of this website are protected by copyright.",
+      "userConduct": "Use of the website is permitted only for lawful purposes.",
+      "contentLimitations": "Distribution of website content without explicit permission is prohibited."
+    },
+    "disclaimer": {
+      "externalLinks": "No liability is assumed for the content of external links.",
+      "informationAccuracy": "No responsibility for the currency, correctness, and completeness of the information provided."
+    },
+     "legalJurisdiction": {
+      "applicableLaw": "The use of the website is governed by the law of the Republic of Cyprus.",
+      "courtOfJurisdiction": "Jurisdiction is Paphos, Cyprus."
+    }
+  }
+}

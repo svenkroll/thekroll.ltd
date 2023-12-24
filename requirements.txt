@@ -1,0 +1,8 @@
+openai
+langchain
+sentence_transformers
+torch
+flask
+chromadb
+jq
+python-dotenv~=1.0

@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "theme": "elegant"
+  },
+  "basics": {
+    "name": "Sven Kroll",
+    "label":  "DevOps / Developer / Consultant",
+    "image": "https://0.gravatar.com/avatar/5183c7de2b44fc2c2b5db5ed2fdef495455d4eb5c537795b29b606a93019824e?size=512",
+    "summary": "As a dedicated IT professional with over twenty years of professional experience, I have honed my skills as the Chief Technology Officer (CTO) and in my journey as a freelance computer scientist. My passion for programming and building infrastructure shines through my work with advanced technologies such as Kubernetes, Linux, cloud solutions, and DevOps methodologies. I have a particular expertise in AI technologies, which reflects my commitment to staying at the forefront of IT innovation.\n\nIn addition to my technical expertise, I am proficient in programming languages like PHP and Python and adept in various configuration management tools. My problem-solving abilities, steadfast reliability, and goal-oriented mindset have been the cornerstone of my career, driving projects to success and earning the trust of colleagues and clients alike.\n\nMy communication skills complement my technical knowledge. Fluent in German and proficient in English, I excel at translating complex technical concepts into clear, understandable language. This ability has made me an effective communicator and collaborator across diverse teams.\n\nI am not just an IT professional; I am a visionary who combines technical acumen with strong social skills to develop impactful and lasting technology solutions.",
+    "website": "https://thekroll.ltd",
+    "email": "sven@thekroll.ltd",
+    "location": {
+      "city": "Paphos",
+      "countryCode": "CY"
+    },
+    "profiles": [
+      {
+        "url": "https://github.com/svenkroll",
+        "username": "svenkroll",
+        "network": "github"
+      },
+      {
+        "url": "https://www.xing.com/profile/Sven_Kroll5",
+        "username": "Sven_Kroll5",
+        "network": "xing"
+      },
+      {
+        "url": "https://www.linkedin.com/in/sven-the-kroll",
+        "username": "sven-the-kroll",
+        "network": "linkedin"
+      },
+      {
+        "url": "https://ko-fi.com/thekroll",
+        "username": "thekroll",
+        "network": "kofi"
+      }
+    ]
+  },
+  "education": [
+    {
+      "endDate": "2015-10-31",
+      "startDate": "2010-10-01",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science",
+      "institution": "FernUniversität Hagen"
+    },
+    {
+      "endDate": "2005-06-30",
+      "startDate": "2002-08-01",
+      "area": "IT Specialist in System Integration",
+      "studyType": "Apprenticeship",
+      "institution": "proALPHA Software Systeme GmbH"
+    }
+  ],
+
+  "references": [
+    {
+    "reference": "Since Sven Kroll stepped into the role of CTO at Crowdfox in 2017, he has been an invaluable asset to our team. Sven's deep commitment and loyalty to our mission have been evident in every project he has undertaken. What sets him apart is not just his exceptional technical expertise but also his hands-on approach to every aspect of the job. Even as CTO, Sven never hesitates to address the simplest tasks, ensuring everything runs smoothly. His ability to manage both high-level strategic planning and day-to-day technical challenges is remarkable. Sven's dedication to our company and his role is truly commendable. I have consistently been impressed by his professional attitude and his ability to lead our technology department with such skill and integrity.",
+    "name": "Dirk Schäfer, CEO, Crowdfox"
+  }],
+  "skills": [
+    {
+      "keywords": [
+        "Docker",
+        "Linux",
+        "Cloud Technologies",
+        "Ansible",
+        "DevOps"
+      ],
+      "level": "Expert",
+      "name": "Cloud and DevOps"
+    },
+    {
+      "keywords": [
+        "PHP",
+        "Python",
+        "Kubernetes",
+        "Helm",
+        "Terraform"
+      ],
+      "level": "Senior",
+      "name": "Software Development and Infrastructure"
+    },
+    {
+      "keywords": [
+        "AWS",
+        "Microsoft Azure",
+        "GitLab",
+        "Server Administration",
+        "Software Architecture"
+      ],
+      "level": "Senior",
+      "name": "Cloud Services and Architecture"
+    },
+    {
+      "keywords": [
+        "AI",
+        "OpenAI",
+        "Stable Diffusion",
+        "Dall-E",
+        "Large Language Models (LLM)"
+      ],
+      "level": "Advanced",
+      "name": "Artificial Intelligence and Machine Learning"
+    },
+    {
+      "keywords": [
+        "Reliability",
+        "Problem-Solving Competence",
+        "Determination"
+      ],
+      "level": "Expert",
+      "name": "Professional Skills"
+    }
+  ],
+  "awards": [
+  {
+    "title": "Grandmaster of Code Conjuring",
+    "awarder": "Wizardry in IT Association"
+  }],
+  "work": [
+  ],
+  "interests": [
+    {
+      "name": "Scientific and Technological Enthusiasms"
+    },
+    {
+      "name": "Gravitational Phenomena"
+    },
+    {
+      "name": "Open Source"
+    }
+  ]
+}

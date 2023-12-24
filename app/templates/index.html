@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="chat">
+      <div class="chat-title">
+        <h2>TheKroll</h2>
+        <h1>What would you like to know about us ?</h1>
+        <!--figure class="avatar">
+          <img src="{{ url_for('static', filename='img/grey_cookie.png') }}" />
+        </figure-->
+      </div>
+      <div class="messages">
+        <div class="messages-content" id="messages-content"></div>
+      </div>
+      <div class="message-box">
+        <form method="post" action="">
+        <textarea id="prompt" name="prompt" type="text" class="message-input" placeholder="Type message..."></textarea>
+        <button type="submit" class="message-submit" id="submitBtn">Ask</button>
+        </form>
+      </div>
+    </div>
+{% endblock %}
