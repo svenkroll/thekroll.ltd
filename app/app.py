@@ -3,7 +3,7 @@ import os
 
 from flask import Flask, Response, render_template, request
 
-from services.stream_handler import stream_manager
+from services.stream_handler import StreamManager
 from services.llm import LLMManager
 from utils import create_vectordb, load_env_configuration
 
@@ -19,25 +19,24 @@ create_vectordb()
 llm_manager = LLMManager(app)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
-    if request.method == 'POST':
-        prompt = request.form.get('prompt')
-
-        stream_manager.prompt_queue.put(prompt)
-
-        return {'status': 'success'}, 200
-
     css_version = int(os.stat('./app/static/css/app.css').st_mtime)
     return render_template('index.html', version=css_version)
 
 
-@app.route('/stream', methods=['GET'])
-def stream():
-    def event_stream():
-        return stream_manager.send_sse_data(llm_manager.qa_chain)
+@app.get("/chat")
+def chat_handler():
+    prompt = request.args.get("message")
+    stream_manager = StreamManager()
 
-    return Response(event_stream(), content_type='text/event-stream')
+    # @stream_with_context
+    def response_stream():
+        return stream_manager.send_sse_data(prompt, llm_manager.qa_chain)
+
+    return Response(response_stream(), mimetype="text/event-stream")
 
 
-app.run(debug=True, use_reloader=False)
+if __name__ == '__main__':
+    app.run()
+    #  app.run(debug=True, use_reloader=False)
