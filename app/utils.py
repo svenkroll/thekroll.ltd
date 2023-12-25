@@ -38,7 +38,7 @@ def create_vectordb():
 
 def load_env_configuration():
     load_dotenv()
-    required_keys = ["LANGCHAIN_DEBUG", "OPENAI_API_KEY"]
+    required_keys = ["LANGCHAIN_DEBUG", "OPENAI_API_KEY", "PORT", "THREADS", "ENVIRONMENT"]
 
     config = {}
     for key in required_keys:

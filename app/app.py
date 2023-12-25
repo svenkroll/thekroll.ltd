@@ -1,6 +1,6 @@
 import logging
 import os
-
+from waitress import serve
 from flask import Flask, Response, render_template, request
 
 from services.stream_handler import StreamManager
@@ -38,5 +38,10 @@ def chat_handler():
 
 
 if __name__ == '__main__':
-    app.run()
-    #  app.run(debug=True, use_reloader=False)
+    port = os.getenv("PORT")
+    threads = os.getenv("THREADS")
+    environment = os.getenv("ENVIRONMENT")
+    if environment == "production":
+        serve(app, host='0.0.0.0', port=port, threads=threads)
+    else:
+        app.run(debug=True, use_reloader=True)

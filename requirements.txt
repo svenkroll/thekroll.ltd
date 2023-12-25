@@ -1,8 +1,9 @@
 openai
-langchain
+langchain~=0.0.352
 sentence_transformers
-torch
-flask
+torch~=2.1.2
+flask~=3.0.0
 chromadb
 jq
 python-dotenv~=1.0
+waitress~=2.1.2
