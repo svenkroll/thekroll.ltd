@@ -1,0 +1,5 @@
+db/
+app.log
+Dockerfile
+.git/
+.gitlab-ci.yml

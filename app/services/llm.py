@@ -1,7 +1,7 @@
 import logging
 import os
+import shutil
 
-import torch
 from langchain.chains import RetrievalQA
 from langchain.globals import set_debug
 from langchain.chat_models import ChatOpenAI
@@ -9,9 +9,14 @@ from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
 
+from langchain.document_loaders import DirectoryLoader, JSONLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
 
 class LLMManager:
     def __init__(self, app):
+        self.create_vectordb()
+
         self.qa_chain = None
         self.app = app
 
@@ -28,7 +33,8 @@ class LLMManager:
         try:
             db_path = os.path.join(os.getcwd(), 'db')
 
-            model_kwargs = {'device': 'cuda' if torch.cuda.is_available() else 'cpu'}
+            # model_kwargs = {'device': 'cuda' if torch.cuda.is_available() else 'cpu'}
+            model_kwargs = {'device': 'cpu'}
             encode_kwargs = {'normalize_embeddings': True}
             embedding = HuggingFaceBgeEmbeddings(model_name='thenlper/gte-base', model_kwargs=model_kwargs,
                                                  encode_kwargs=encode_kwargs)
@@ -44,3 +50,28 @@ class LLMManager:
             logging.info(f"LLM initialized")
         except Exception as e:
             logging.error(f"LLM failed to initialize : {e}")
+
+    def create_vectordb(self):
+        texts = []
+
+        try:
+            db_path = os.path.join(os.getcwd(), 'db')
+
+            if os.path.exists(db_path):
+                shutil.rmtree(db_path)
+            loader_dir = DirectoryLoader('data', glob='*.json', loader_cls=JSONLoader,
+                                         loader_kwargs={'jq_schema': '.', 'text_content': False})
+            documents = loader_dir.load_and_split()
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=200)
+            texts += text_splitter.split_documents(documents)
+            # model_kwargs = {'device': 'cuda' if torch.cuda.is_available() else 'cpu'}
+            model_kwargs = {'device': 'cpu'}
+            encode_kwargs = {'normalize_embeddings': True}
+            embedding = HuggingFaceBgeEmbeddings(model_name='thenlper/gte-base', model_kwargs=model_kwargs,
+                                                 encode_kwargs=encode_kwargs)
+            vectordb = Chroma.from_documents(documents=texts,
+                                             embedding=embedding,
+                                             persist_directory=db_path)
+            logging.info(f"The '{db_path}' folder has been created.")
+        except Exception as e:
+            logging.error(f"An error occurred while processing file: {e}")

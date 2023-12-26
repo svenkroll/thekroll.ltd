@@ -1,7 +1,6 @@
 openai
 langchain~=0.0.352
 sentence_transformers
-torch~=2.1.2
 flask~=3.0.0
 chromadb
 jq

@@ -1,44 +1,13 @@
 import logging
 import os
-import shutil
-
-import torch
-from langchain.document_loaders import DirectoryLoader, JSONLoader
-from langchain.embeddings import HuggingFaceBgeEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
+import sys
 
 from dotenv import load_dotenv
 
 
-def create_vectordb():
-    texts = []
-
-    try:
-        db_path = os.path.join(os.getcwd(), 'db')
-
-        if os.path.exists(db_path):
-            shutil.rmtree(db_path)
-        loader_dir = DirectoryLoader('data', glob='*.json', loader_cls=JSONLoader,
-                                     loader_kwargs={'jq_schema': '.', 'text_content': False})
-        documents = loader_dir.load_and_split()
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=200)
-        texts += text_splitter.split_documents(documents)
-        model_kwargs = {'device': 'cuda' if torch.cuda.is_available() else 'cpu'}
-        encode_kwargs = {'normalize_embeddings': True}
-        embedding = HuggingFaceBgeEmbeddings(model_name='thenlper/gte-base', model_kwargs=model_kwargs,
-                                             encode_kwargs=encode_kwargs)
-        vectordb = Chroma.from_documents(documents=texts,
-                                         embedding=embedding,
-                                         persist_directory=db_path)
-        logging.info(f"The '{db_path}' folder has been created.")
-    except Exception as e:
-        logging.error(f"An error occurred while processing file: {e}")
-
-
 def load_env_configuration():
     load_dotenv()
-    required_keys = ["LANGCHAIN_DEBUG", "OPENAI_API_KEY", "PORT", "THREADS", "ENVIRONMENT"]
+    required_keys = ["LANGCHAIN_DEBUG", "OPENAI_API_KEY", "THREADS", "ENVIRONMENT"]
 
     config = {}
     for key in required_keys:
@@ -48,3 +17,27 @@ def load_env_configuration():
         config[key] = value
 
     return config
+
+
+def configure_logging():
+    # Get log level from environment variable
+    log_level = os.getenv('LOG_LEVEL', 'INFO').upper()
+    numeric_level = getattr(logging, log_level, None)
+    if not isinstance(numeric_level, int):
+        raise ValueError(f'Invalid log level: {log_level}')
+
+    # Configure logging
+    logging.basicConfig(level=numeric_level)
+
+    # StreamHandler for stdout
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    stdout_handler.setLevel(logging.INFO)
+    stdout_handler.addFilter(lambda record: record.levelno <= logging.INFO)
+
+    # StreamHandler for stderr
+    stderr_handler = logging.StreamHandler(sys.stderr)
+    stderr_handler.setLevel(logging.WARNING)
+
+    # Add handlers to the root logger
+    logging.getLogger().addHandler(stdout_handler)
+    logging.getLogger().addHandler(stderr_handler)

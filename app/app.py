@@ -1,21 +1,19 @@
-import logging
 import os
+
 from waitress import serve
 from flask import Flask, Response, render_template, request
 
 from services.stream_handler import StreamManager
 from services.llm import LLMManager
-from utils import create_vectordb, load_env_configuration
+from utils import load_env_configuration, configure_logging
 
 import config
 
 app = Flask(__name__)
 app.config.from_object(config)
 
-logging.basicConfig(filename="app.log", level=logging.INFO, filemode="w")
-
 load_env_configuration()
-create_vectordb()
+configure_logging()
 llm_manager = LLMManager(app)
 
 
@@ -38,10 +36,9 @@ def chat_handler():
 
 
 if __name__ == '__main__':
-    port = os.getenv("PORT")
     threads = os.getenv("THREADS")
     environment = os.getenv("ENVIRONMENT")
     if environment == "production":
-        serve(app, host='0.0.0.0', port=port, threads=threads)
+        serve(app, host='0.0.0.0', port="8080", threads=threads)
     else:
         app.run(debug=True, use_reloader=True)
