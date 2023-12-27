@@ -41,3 +41,6 @@ def configure_logging():
     # Add handlers to the root logger
     logging.getLogger().addHandler(stdout_handler)
     logging.getLogger().addHandler(stderr_handler)
+
+    logging.getLogger("flask-limiter").addHandler(stdout_handler)
+    logging.getLogger("flask-limiter").addHandler(stderr_handler)

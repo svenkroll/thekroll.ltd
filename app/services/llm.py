@@ -21,7 +21,7 @@ class LLMManager:
         self.app = app
 
         try:
-            self.llm = ChatOpenAI(model_name="gpt-4", streaming=True, temperature=0.0, callbacks=[])
+            self.llm = ChatOpenAI(model_name=self.app.config['OPENAI_MODEL'], streaming=True, temperature=0.0, callbacks=[])
         except Exception as e:
             logging.error("OpenAI failed to initialize: {e}.")
 
