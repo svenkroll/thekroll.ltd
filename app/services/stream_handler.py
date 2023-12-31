@@ -17,11 +17,15 @@ class StreamManager:
                                                 kwargs={'callbacks': [stream_handler]})
         response_thread.start()
 
-        while stream_handler.running:
-            time.sleep(0.5)
-            while not sse_event_queue.empty():
-                sse_event = sse_event_queue.get()
-                yield f"data: {json.dumps(sse_event)}\n\n"
+        try:
+            while stream_handler.running:
+                time.sleep(0.5)
+                while not sse_event_queue.empty():
+                    sse_event = sse_event_queue.get()
+                    yield f"data: {json.dumps(sse_event)}\n\n"
+        finally:
+            stream_handler.running = False
+            response_thread.join()  # Ensure the thread is terminated properly
 
 
 class StreamHandler(BaseCallbackHandler):
@@ -37,6 +41,8 @@ class StreamHandler(BaseCallbackHandler):
 
     def on_llm_end(self, response: LLMResult, **kwargs) -> None:
         self.sse_event_queue.put({'type': 'end'})
+        self.running = False  # Stop the stream after the response is fully sent
 
     def on_llm_error(self, error: BaseException, **kwargs) -> None:
         self.sse_event_queue.put({'type': 'error', 'content': str(error)})
+        self.running = False  # Stop the stream in case of an error
