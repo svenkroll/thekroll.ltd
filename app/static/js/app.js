@@ -5,16 +5,7 @@ var $messages = $('.messages-content'),
     i = 0;
 
 window.onload = function() {
-       turnstile.render('#turnstile-container', {
-          sitekey: '0x4AAAAAAAPB-kgckXDcD0S-',
-          theme: 'dark',
-          'response-field': false,
-          callback: function(token) {
-             turnstileToken = token;
-             document.getElementById('message-form').style.display = 'block';
-             document.getElementById('turnstile-container').style.display = 'none';
-          },
-       });
+       renderTurnstile();
     };
 
 $(document).ready(function() {
@@ -99,3 +90,18 @@ function addTextAndSubmit(textToAdd) {
     // Simulate a click on the submit button
     document.getElementById('submitBtn').click();
 }
+
+function renderTurnstile() {
+   document.getElementById('message-form').style.display = 'none';
+   document.getElementById('turnstile-container').style.display = 'block';
+   turnstile.render('#turnstile-container', {
+      sitekey: '0x4AAAAAAAPB-kgckXDcD0S-',
+      theme: 'dark',
+      'response-field': false,
+      callback: function(token) {
+         turnstileToken = token;
+         document.getElementById('message-form').style.display = 'block';
+         document.getElementById('turnstile-container').style.display = 'none';
+      },
+   });
+};
