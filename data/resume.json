@@ -119,6 +119,77 @@
     "awarder": "Wizardry in IT Association"
   }],
   "work": [
+    {
+      "company": "Crowdfox GmbH",
+      "position": "CTO",
+      "website": "https://crowdfox.pro",
+      "startDate": "2017-07",
+      "endDate": "2023-12",
+      "summary": "Details about the position, achievements, etc.",
+      "highlights": [
+        "Highlight 1",
+        "Highlight 2"
+      ]
+    },
+    {
+      "company": "Sven Kroll",
+      "position": "Freiberuflicher Informatiker",
+      "website": "https://svenkroll.me",
+      "startDate": "2016-07",
+      "endDate": "2023-12",
+      "summary": "Details about the freelance work, projects, etc.",
+      "highlights": [
+        "Highlight 1",
+        "Highlight 2"
+      ]
+    },
+    {
+      "company": "hanslik consulting",
+      "position": "Head of IT-Operations",
+      "website": "",
+      "startDate": "2014-07",
+      "endDate": "2016-07",
+      "summary": "Details about the role and responsibilities.",
+      "highlights": [
+        "Highlight 1",
+        "Highlight 2"
+      ]
+    },{
+      "company": "sevenload GmbH",
+      "position": "Technischer Projektleiter",
+      "website": "",
+      "startDate": "2012-03",
+      "endDate": "2014-06",
+      "summary": "Details about the technical leadership position, projects overseen, etc.",
+      "highlights": [
+        "Highlight 1",
+        "Highlight 2"
+      ]
+    },
+    {
+      "company": "sevenload GmbH",
+      "position": "Senior Systemadministrator",
+      "website": "",
+      "startDate": "2011-08",
+      "endDate": "2012-02",
+      "summary": "Details about the senior system administration responsibilities.",
+      "highlights": [
+        "Highlight 1",
+        "Highlight 2"
+      ]
+    },
+    {
+      "company": "sevenload GmbH",
+      "position": "Senior IT Administrator",
+      "website": "",
+      "startDate": "2007-07",
+      "endDate": "2011-07",
+      "summary": "Details about the IT administration role and key contributions.",
+      "highlights": [
+        "Highlight 1",
+        "Highlight 2"
+      ]
+    }
   ],
   "interests": [
     {

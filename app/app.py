@@ -5,7 +5,7 @@ from flask import Flask, Response, render_template, request
 
 from services.stream_handler import StreamManager
 from services.llm import LLMManager
-from utils import load_env_configuration, configure_logging
+from utils import load_env_configuration, configure_logging, validate_turnstile_token
 
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -38,6 +38,13 @@ def index():
 @limiter.limit("10 per minute", error_message='Rate limit exceeded. Try again in a minute.')
 def chat_handler():
     prompt = request.args.get("message")
+    token = request.args.get("token")
+
+    validation_result = validate_turnstile_token(token, os.getenv('TURNSTILE_SECRET'))
+
+    if not validation_result.get('success'):
+        return 'Token-Validierung fehlgeschlagen', 400
+
     stream_manager = StreamManager()
 
     # @stream_with_context

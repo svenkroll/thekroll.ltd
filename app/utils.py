@@ -1,13 +1,26 @@
 import logging
 import os
 import sys
+import requests
 
 from dotenv import load_dotenv
 
 
+def validate_turnstile_token(token, secret_key):
+    """Validate Turnstile token using Cloudflare's siteverify API."""
+    url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+
+    payload = {
+        'secret': secret_key,
+        'response': token
+    }
+    response = requests.post(url, data=payload)
+    return response.json()
+
+
 def load_env_configuration():
     load_dotenv()
-    required_keys = ["LANGCHAIN_DEBUG", "OPENAI_API_KEY", "THREADS", "ENVIRONMENT"]
+    required_keys = ["LANGCHAIN_DEBUG", "OPENAI_API_KEY", "THREADS", "ENVIRONMENT", "TURNSTILE_SECRET"]
 
     config = {}
     for key in required_keys:

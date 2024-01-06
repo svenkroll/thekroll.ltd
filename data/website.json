@@ -1,4 +1,12 @@
 {
+  "privacyPolicy": {
+    "dataCollection": "Personal data is collected only with your consent or for contract fulfillment/initiation purposes.",
+    "CloudflareTurnstile": "We use Cloudflare Turnstile (“Turnstile”) on this website. The provider is Cloudflare Inc. (“Cloudflare”), 101 Townsend St., San Francisco, CA 94107, USA.\nTurnstile is used to verify whether data entry on this website (e.g. in a contact form) is made by a human or by an automated program.\nFor analysis, Turnstile evaluates various information (e.g. IP address, time spent on the website, or mouse movements). The data collected during the analysis is forwarded to Cloudflare.\n\nThe storage and analysis of the data is based on Art. 6 (1) lit. f DSGVO. The use of Turnstile is based on our legitimate interest in providing our website as error-free and secure as possible. If consent has been requested, processing is carried out exclusively on the basis of Art. 6 para. 1 lit. a DSGVO and § 25 para. 1 TTDSG, provided that the consent includes the storage of cookies or access to information in the user’s terminal device as defined by the TTDSG. The consent can be revoked at any time.\n\nYou can find more information about security and data protection at Cloudflare here: https://www.cloudflare.com/privacypolicy/.",
+    "WebAnalysisAndCookies": "On this website, we use the web analytics service Matomo to analyse and review the use of our website. We operate Matomo in a version that does not require cookies. Thus, no Matomo cookies are stored on your end device for the purpose of web analysis. For the analysis of website usage, your IP address and information such as timestamp, websites visited and your language settings are collected. We store the information collected in this way on our server.\n\nThis website uses Matomo with the extension “AnonymizeIP”. This means that IP addresses are processed in a shortened form and a direct link to a person is excluded. The IP address transmitted by your browser via Matomo is not merged with other data collected by us.\n\nThe legal basis for the use of Matomo is Art. 6 para. 1 p. 1 lit. f DSGVO. Preventing the use of Matomo is possible by activating the opt-out plug-in: In this case, an opt-out cookie is stored in your browser, which prevents Matomo from storing usage data. If you delete your cookies, the Matomo opt-out cookie will also be deleted. The opt-out must be reactivated when you visit our site again.",
+    "dataUsage": "Collected data is used for providing our services and communication.",
+    "userRights": "Users have the right to access, rectify, delete, and restrict processing of their data.",
+    "cookiePolicy": "Our website uses only technical required cookies."
+  },
   "legalNoticeDetails": {
     "websiteOwner": {
       "name": "TheKroll Ltd.",
@@ -10,13 +18,7 @@
         "country": "Cyprus"
       },
       "contactEmail": "info@thekroll.ltd",
-      "vatNumber": "Requested"
-    },
-    "privacyPolicy": {
-      "dataCollection": "Personal data is collected only with your consent or for contract fulfillment/initiation purposes.",
-      "dataUsage": "Collected data is used for providing our services and communication.",
-      "userRights": "Users have the right to access, rectify, delete, and restrict processing of their data.",
-      "cookiePolicy": "Our website uses only technical required cookies."
+      "vatNumber": ""
     },
     "termsOfUse": {
       "copyrightNotice": "All contents of this website are protected by copyright.",

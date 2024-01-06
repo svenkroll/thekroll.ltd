@@ -1,10 +1,22 @@
 var eventSource = null;
-
+var turnstileToken = null;
 var $messages = $('.messages-content'),
     d, h, m,
     i = 0;
 
-// Call the setupSSE function when the page is ready
+window.onload = function() {
+       turnstile.render('#turnstile-container', {
+          sitekey: '0x4AAAAAAAPB-kgckXDcD0S-',
+          theme: 'dark',
+          'response-field': false,
+          callback: function(token) {
+             turnstileToken = token;
+             document.getElementById('message-form').style.display = 'block';
+             document.getElementById('turnstile-container').style.display = 'none';
+          },
+       });
+    };
+
 $(document).ready(function() {
     var container = document.getElementById('messages-content');
     var ps = new PerfectScrollbar(container);
@@ -32,7 +44,8 @@ $(document).ready(function() {
         if (eventSource) {
             eventSource.close();
         }
-        eventSource = new EventSource('/chat?message=' + prompt);
+
+        eventSource = new EventSource('/chat?token=' + encodeURIComponent(turnstileToken) + '&message=' + encodeURIComponent(prompt));
 
         eventSource.onmessage = function(event) {
             var data = JSON.parse(event.data);
