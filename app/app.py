@@ -51,6 +51,6 @@ if __name__ == '__main__':
     threads = os.getenv("THREADS")
     environment = os.getenv("ENVIRONMENT")
     if environment == "production":
-        serve(app, host='0.0.0.0', port="8080", threads=threads)
+        serve(app, host='0.0.0.0', port="8080", threads=threads, timeout=60)
     else:
         app.run(debug=True, use_reloader=True)
