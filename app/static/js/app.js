@@ -17,6 +17,7 @@ function decodeHTMLEntities(text) {
 $(document).ready(function() {
     var container = document.getElementById('messages-content');
     var ps = new PerfectScrollbar(container);
+    var buffer = "";
 
     $('#prompt').keypress(function(event) {
         if (event.keyCode === 13 && !event.shiftKey) {
@@ -49,27 +50,37 @@ $(document).ready(function() {
             var data = JSON.parse(event.data);
 
             var type = data.type;
-            var content = data.content;
-
             var dateTime = new Date();
             var time = dateTime.toLocaleTimeString();
 
-            $('.thinking-dots').remove(); // Remove thinking dots if they exists
-
             // Append the message to the response div based on the role
             if (type === "token") {
-                var formattedContent = content.replace(/\n/g, '<br>'); // Replace newline characters with <br>
-                var messageElement = $('.responsetext').last();
-                messageElement.append(formattedContent);
-                // Scroll to the bottom of the output container
-                var messagesContentDiv = document.getElementById('messages-content');
-                messagesContentDiv.scrollTop = messagesContentDiv.scrollHeight;
+                buffer += data.content;
+                var lastIndexOfCloseTag = buffer.lastIndexOf('>');
+                var lastIndexOfOpenTag = buffer.lastIndexOf('<');
+                if (lastIndexOfOpenTag == -1 || lastIndexOfOpenTag < lastIndexOfCloseTag) {
+                    $('.thinking-dots').remove(); // Remove thinking dots if they exists
+                    var formattedContent = buffer.replace(/\n/g, '<br>'); // Replace newline characters with <br>
+                    var messageElement = $('.responsetext').last();
+                    var currentText = messageElement.text();
+                    messageElement.text(currentText + formattedContent);
+                    // messageElement.append(formattedContent);
+                    buffer = "";
+                    // Scroll to the bottom of the output container
+                    var messagesContentDiv = document.getElementById('messages-content');
+                    messagesContentDiv.scrollTop = messagesContentDiv.scrollHeight;
+                }
+
             }
             else if (type === "end") {
+                //append last buffer if incomplete
                 // Decode response
                 var messageElement = $('.responsetext').last();
                 var decodedResponseText = decodeHTMLEntities(messageElement.html().replace(/```html/g, ''));
                 messageElement.html(decodedResponseText);
+                // Scroll to the bottom of the output container
+                var messagesContentDiv = document.getElementById('messages-content');
+                messagesContentDiv.scrollTop = messagesContentDiv.scrollHeight;
             }
             else if (type === "error") {
                 console.log(content);
