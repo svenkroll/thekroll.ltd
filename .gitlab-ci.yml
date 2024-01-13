@@ -6,8 +6,18 @@ variables:
   DOCKER_DRIVER: overlay
 
 stages:
+  - lint
   - build
   - package
+
+lint:
+  stage: lint
+  image: python:3.10-bookworm
+  script:
+    - pip install pylint
+    - pip install --no-cache-dir -r requirements.txt
+    - pylint download_models.py
+    - pylint app/**/*.py
 
 docker-build:
   stage: package

@@ -1,3 +1,9 @@
+"""
+This module provides the functionality to manage streaming data from a language model
+to a client using Server-Sent Events (SSE). It includes classes to handle streaming
+and process callbacks from the language model.
+"""
+
 import json
 import threading
 import time
@@ -9,7 +15,13 @@ from langchain.schema.output import LLMResult
 
 
 class StreamManager:
+    """
+    Manages the streaming of data from a language model to a client.
+    """
     def send_sse_data(self, prompt, qa_chain):
+        """
+        Streams data to a client using Server-Sent Events (SSE).
+        """
         sse_event_queue = Queue()
 
         stream_handler = StreamHandler(sse_event_queue)
@@ -29,6 +41,9 @@ class StreamManager:
 
 
 class StreamHandler(BaseCallbackHandler):
+    """
+    Handles callbacks from a language model and queues them for streaming.
+    """
     def __init__(self, sse_event_queue: Queue):
         self.sse_event_queue = sse_event_queue
         self.running = True

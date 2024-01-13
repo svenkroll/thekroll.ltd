@@ -1,3 +1,12 @@
+"""
+This module sets up a Flask web application integrated with a rate limiter,
+stream handler, and LLM (Large Language Model) Manager for chat functionalities.
+It includes endpoints for the main page and chat handling, as well as utilities
+for token validation and cleanup.
+
+Uses external services and configurations defined in 'services' and 'utils' packages.
+"""
+
 import os
 from datetime import timedelta, datetime
 
@@ -33,6 +42,15 @@ llm_manager = LLMManager(app)
 
 
 def is_token_valid(token):
+    """
+    Check if a given token is valid and not expired.
+
+    Args:
+        token (str): The token to be validated.
+
+    Returns:
+        bool: True if the token is valid and not expired, False otherwise.
+    """
     if token in validated_tokens:
         token_time = validated_tokens[token]
         if datetime.now() - token_time < TOKEN_EXPIRATION_TIME:
@@ -41,8 +59,14 @@ def is_token_valid(token):
 
 
 def cleanup_expired_tokens():
+    """
+    Remove expired tokens from the validated tokens list.
+    """
     current_time = datetime.now()
-    expired_tokens = [token for token, time in validated_tokens.items() if current_time - time > TOKEN_EXPIRATION_TIME]
+    expired_tokens = [
+        token for token, time in validated_tokens.items()
+        if current_time - time > TOKEN_EXPIRATION_TIME
+    ]
     for token in expired_tokens:
         validated_tokens.pop(token)
 
@@ -50,6 +74,12 @@ def cleanup_expired_tokens():
 @app.route('/', methods=['GET'])
 @limiter.limit("10 per minute", error_message='Rate limit exceeded. Try again in a minute.')
 def index():
+    """
+    Flask route for the main page. Performs token cleanup and serves the index page.
+
+    Returns:
+        Response: Rendered index.html template with CSS version.
+    """
     cleanup_expired_tokens()
     css_version = int(os.stat('./app/static/css/app.css').st_mtime)
     return render_template('index.html', version=css_version)
@@ -58,6 +88,12 @@ def index():
 @app.get("/chat")
 @limiter.limit("10 per minute", error_message='Rate limit exceeded. Try again in a minute.')
 def chat_handler():
+    """
+    Flask route for handling chat requests. Validates tokens and handles chat prompts.
+
+    Returns:
+        Response: Stream of server-sent events (SSE) for chat responses.
+    """
     prompt = request.args.get("message")
     token = request.args.get("token")
 

@@ -1,3 +1,10 @@
+"""
+This module contains utility functions for a Flask application, including token validation,
+environment configuration loading, and logging setup. Functions include validating Turnstile
+tokens using Cloudflare's API, loading configuration variables from a .env file, and
+configuring the application's logging system according to environment variables.
+"""
+
 import logging
 import os
 import sys
@@ -14,13 +21,20 @@ def validate_turnstile_token(token, secret_key):
         'secret': secret_key,
         'response': token
     }
-    response = requests.post(url, data=payload)
+    response = requests.post(url, data=payload, timeout=5)
     return response.json()
 
 
 def load_env_configuration():
+    """Load config values from dotenv file."""
     load_dotenv()
-    required_keys = ["LANGCHAIN_DEBUG", "OPENAI_API_KEY", "THREADS", "ENVIRONMENT", "TURNSTILE_SECRET"]
+    required_keys = [
+        "LANGCHAIN_DEBUG",
+        "OPENAI_API_KEY",
+        "THREADS",
+        "ENVIRONMENT",
+        "TURNSTILE_SECRET"
+    ]
 
     config = {}
     for key in required_keys:
@@ -33,6 +47,20 @@ def load_env_configuration():
 
 
 def configure_logging():
+    """
+    Configures the logging system for the application.
+
+    This function sets up logging based on the LOG_LEVEL environment variable.
+    It supports different logging levels (e.g., DEBUG, INFO, WARNING, etc.)
+    and directs logs to appropriate output streams (stdout for INFO and below,
+    stderr for WARNING and above).
+
+    It also specifically configures logging for the 'flask-limiter' component,
+    ensuring that its logs are handled in the same way as the application's logs.
+
+    Raises:
+        ValueError: If the LOG_LEVEL environment variable contains an invalid logging level.
+    """
     # Get log level from environment variable
     log_level = os.getenv('LOG_LEVEL', 'INFO').upper()
     numeric_level = getattr(logging, log_level, None)
