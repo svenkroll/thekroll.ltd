@@ -31,6 +31,7 @@ $(document).ready(function() {
         $('#prompt').val('');
 
         $('<div class="message new"><figure class="avatar"><img src="/static/img/grey_cookie.png" /></figure></div>').appendTo($('.messages-content')).addClass('new');
+        $('<div class="thinking-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>').appendTo($('.message').last());
 
         if (eventSource) {
             eventSource.close();
@@ -46,6 +47,8 @@ $(document).ready(function() {
 
             var dateTime = new Date();
             var time = dateTime.toLocaleTimeString();
+
+            $('.thinking-dots').remove(); // Remove thinking dots if they exists
 
             // Append the message to the response div based on the role
             if (type === "token") {

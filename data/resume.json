@@ -61,10 +61,10 @@
   "skills": [
     {
       "keywords": [
+        "Kubernetes",
         "Docker",
         "Linux",
         "Cloud Technologies",
-        "Ansible",
         "DevOps"
       ],
       "level": "Expert",
@@ -74,8 +74,8 @@
       "keywords": [
         "PHP",
         "Python",
-        "Kubernetes",
         "Helm",
+        "Ansible",
         "Terraform"
       ],
       "level": "Senior",
