@@ -8,6 +8,12 @@ window.onload = function() {
        renderTurnstile();
     };
 
+function decodeHTMLEntities(text) {
+    return $("<textarea/>")
+    .html(text)
+    .text();
+}
+
 $(document).ready(function() {
     var container = document.getElementById('messages-content');
     var ps = new PerfectScrollbar(container);
@@ -30,8 +36,8 @@ $(document).ready(function() {
         // Clear the prompt
         $('#prompt').val('');
 
-        $('<div class="message new"><figure class="avatar"><img src="/static/img/grey_cookie.png" /></figure></div>').appendTo($('.messages-content')).addClass('new');
-        $('<div class="thinking-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>').appendTo($('.message').last());
+        $('<div class="message new"><figure class="avatar"><img src="/static/img/grey_cookie.png" /></figure><div class="responsetext"></div></div>').appendTo($('.messages-content')).addClass('new');
+        $('<div class="thinking-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>').appendTo($('.responsetext').last());
 
         if (eventSource) {
             eventSource.close();
@@ -53,11 +59,17 @@ $(document).ready(function() {
             // Append the message to the response div based on the role
             if (type === "token") {
                 var formattedContent = content.replace(/\n/g, '<br>'); // Replace newline characters with <br>
-                var messageElement = $('.message').last();
+                var messageElement = $('.responsetext').last();
                 messageElement.append(formattedContent);
                 // Scroll to the bottom of the output container
                 var messagesContentDiv = document.getElementById('messages-content');
                 messagesContentDiv.scrollTop = messagesContentDiv.scrollHeight;
+            }
+            else if (type === "end") {
+                // Decode response
+                var messageElement = $('.responsetext').last();
+                var decodedResponseText = decodeHTMLEntities(messageElement.html().replace(/```html/g, ''));
+                messageElement.html(decodedResponseText);
             }
             else if (type === "error") {
                 console.log(content);

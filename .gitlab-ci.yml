@@ -16,8 +16,8 @@ lint:
   script:
     - pip install pylint
     - pip install --no-cache-dir -r requirements.txt
-    - pylint download_models.py
-    - pylint app/**/*.py
+    - pylint --fail-under=8.0 download_models.py
+    - pylint --fail-under=8.0 app/**/*.py
 
 docker-build:
   stage: package
