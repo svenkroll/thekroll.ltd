@@ -17,7 +17,7 @@ body {
 }
 
 /* Media query for screens that are narrower than 768 pixels (e.g., smartphones) */
-@media (max-width: 1024px) {
+@media (max-width: 1600px) {
     .logo-top-left {
         max-height: 150px; /* Smaller max-height for smaller screens */
     }
@@ -80,7 +80,7 @@ body {
   z-index: 2;
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-  background: rgba(23, 23, 23, 0.85);
+  background: rgba(180, 180, 180, 0.60);
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
@@ -95,7 +95,8 @@ Chat Title
   flex: 0 1 45px;
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
   color: #fff;
   text-transform: uppercase;
   text-align: left;
@@ -157,7 +158,7 @@ Messages
   margin: 8px 0;
   font-size: 15px;
   line-height: 1.4;
-  margin-left: 35px;
+  margin-left: 40px;
   position: relative;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -171,14 +172,14 @@ Messages
   content: "";
   position: absolute;
   bottom: -6px;
-  border-top: 6px solid rgba(0, 0, 0, 0.3);
+  border-top: 6px solid rgba(0, 0, 0, 0.5);
   left: 0;
   border-right: 7px solid transparent;
 }
 .messages .message .avatar {
   position: absolute;
   z-index: 1;
-  left: -35px;
+  left: -40px;
   border-radius: 40px;
   width: 40px;
   height: 40px;
@@ -195,7 +196,7 @@ Messages
   float: right;
   color: #fff;
   text-align: right;
-  background: linear-gradient(120deg, #52575b, #323537);
+  background: rgba(0,0,0,0.7);
   border-radius: 10px 10px 0 10px;
 }
 .messages .message.message-personal::before {
@@ -210,9 +211,11 @@ Messages
   margin-bottom: 30px;
 }
 .messages .message.new {
+  color: #fff;
   transform: scale(0);
   transform-origin: 0 0;
   animation: bounce 500ms linear both;
+  background: rgba(0,0,0,0.7);
 }
 .messages .message.loading::before {
   position: absolute;
@@ -277,19 +280,25 @@ Message Box
 --------------------*/
 .message-box {
   flex: 0 1 40px;
+  height: 60px;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
   padding: 10px;
   position: relative;
 }
 .message-box .message-input {
-  background: none;
+  background: rgb(0,0,0,0.7);
+  line-height: 35px;
   border: none;
+  border-radius: 10px;
+  text-indent: 10px;
   outline: none !important;
   resize: none;
   color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
-  height: 22px;
+  height: 40px;
+  width: 80px;
   margin: 0;
   padding-right: 20px;
   width: 90%;
@@ -300,11 +309,13 @@ Message Box
 .message-box .message-submit {
   position: absolute;
   z-index: 1;
-  top: 9px;
+  height: 40px;
   right: 10px;
   border: none;
-  background: #92999f;
-  font-size: 10px;
+  background: rgb(0,0,0,0.7);
+  font-weight: normal;
+  font-size: 15px;
+  color: #fff;
   text-transform: uppercase;
   line-height: 1;
   padding: 6px 10px;
@@ -393,12 +404,11 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-    background: rgba(23, 23, 23, 0.85);
+    background: rgba(81, 81, 81);
 }
 
 footer a {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
 }
 
@@ -434,4 +444,12 @@ typing indicator
 @keyframes jump {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-100%); }
+}
+
+.cf-turnstile {
+  place-items: center;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  z-index: 1;
 }

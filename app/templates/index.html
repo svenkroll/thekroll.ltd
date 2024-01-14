@@ -9,13 +9,13 @@
           <img src="{{ url_for('static', filename='img/grey_cookie.png') }}" />
         </figure-->
       </div>
+      <div id="turnstile-container" class="cf-turnstile" style="display: grid;place-items: center;"></div>
       <div class="messages">
         <div class="messages-content" id="messages-content"></div>
       </div>
       <div class="message-box">
-        <div id="turnstile-container" class="cf-turnstile" style="display: grid;place-items: center;"></div>
         <form method="post" action="" id="message-form" style="display: none;">
-        <textarea id="prompt" name="prompt" type="text" class="message-input" placeholder="Type message..."></textarea>
+        <textarea id="prompt" name="prompt" type="text" class="message-input" placeholder="Type message..." autofocus></textarea>
         <button type="submit" class="message-submit" id="submitBtn">Ask</button>
         </form>
       </div>

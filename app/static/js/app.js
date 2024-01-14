@@ -76,7 +76,7 @@ $(document).ready(function() {
                 //append last buffer if incomplete
                 // Decode response
                 var messageElement = $('.responsetext').last();
-                var decodedResponseText = decodeHTMLEntities(messageElement.html().replace(/```html/g, ''));
+                var decodedResponseText = decodeHTMLEntities(messageElement.html().replace(/```html/g, '').replace(/```/g, ''));
                 messageElement.html(decodedResponseText);
                 // Scroll to the bottom of the output container
                 var messagesContentDiv = document.getElementById('messages-content');
