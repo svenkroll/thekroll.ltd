@@ -180,6 +180,7 @@ Messages
   position: absolute;
   z-index: 1;
   left: -40px;
+  bottom: -20px;
   border-radius: 40px;
   width: 40px;
   height: 40px;
@@ -196,7 +197,7 @@ Messages
   float: right;
   color: #fff;
   text-align: right;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.8);
   border-radius: 10px 10px 0 10px;
 }
 .messages .message.message-personal::before {
@@ -215,7 +216,7 @@ Messages
   transform: scale(0);
   transform-origin: 0 0;
   animation: bounce 500ms linear both;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.5);
 }
 .messages .message.loading::before {
   position: absolute;
@@ -280,16 +281,15 @@ Message Box
 --------------------*/
 .message-box {
   flex: 0 1 40px;
-  height: 60px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   padding: 10px;
   position: relative;
 }
 .message-box .message-input {
-  background: rgb(0,0,0,0.7);
-  line-height: 35px;
+  background: none;
+  /* line-height: 35px; */
   border: none;
   border-radius: 10px;
   text-indent: 10px;
@@ -297,29 +297,29 @@ Message Box
   resize: none;
   color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
-  height: 40px;
   width: 80px;
   margin: 0;
   padding-right: 20px;
-  width: 90%;
+  width: 92%;
 }
 .message-box textarea:focus:-webkit-placeholder {
   color: transparent;
 }
 .message-box .message-submit {
-  position: absolute;
-  z-index: 1;
-  height: 40px;
-  right: 10px;
+  /* position: absolute; */
+  /* z-index: 1; */
+  /* height: 40px; */
+  /* right: 10px; */
+  width: 7%;
   border: none;
-  background: rgb(0,0,0,0.7);
+  background: rgb(108,108,108);
   font-weight: normal;
   font-size: 15px;
   color: #fff;
   text-transform: uppercase;
   line-height: 1;
   padding: 6px 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   outline: none !important;
   transition: background 0.2s ease;
 }

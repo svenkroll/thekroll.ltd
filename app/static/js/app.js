@@ -32,8 +32,14 @@ $(document).ready(function() {
         // Get the prompt
         var prompt = $('#prompt').val();
 
+        // Check if the prompt is empty
+        if (prompt.trim() === '') {
+            // Do nothing if the prompt is empty
+            return;
+        }
+
         // Append the prompt to the response div
-        $('<div class="message message-personal">' + prompt + '</div>').appendTo($('.messages-content')).addClass('new');
+        $('<div class="message message-personal">' + prompt + '</div>').appendTo($('.messages-content'));
         // Clear the prompt
         $('#prompt').val('');
 
@@ -128,6 +134,7 @@ function renderTurnstile() {
          turnstileToken = token;
          document.getElementById('message-form').style.display = 'block';
          document.getElementById('turnstile-container').style.display = 'none';
+         document.getElementById('prompt').focus();
       },
    });
 };
