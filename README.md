@@ -1,4 +1,4 @@
-# [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R8QT94J)  Minimalistic technology concept for a AI powered website 
+# Minimalistic technology concept for a AI powered website 
 
 ## Description
 Welcome to a revolutionary era of web interaction with our ChatGPT-Enhanced Website based on vectorized local data! This isn't just another website; it's a paradigm shift in digital interaction, blending advanced AI capabilities with intuitive design. Built for the modern user who values efficiency and innovation, this website represents a leap in web development, where AI does the heavy lifting, and you reap the rewards. See it live at `https://thekroll.ltd`
